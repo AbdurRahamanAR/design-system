@@ -1,10 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
-import { action } from '@storybook/addon-actions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
-import { Button } from './Button';
-import { Icon } from './Icon';
-import { StoryLinkWrapper } from './StoryLinkWrapper';
+import Button from './Button';
 
 export default {
   title: 'Button',
@@ -15,97 +13,39 @@ export const Basic = (args) => <Button {...args} />;
 Basic.args = { children: 'Label' };
 
 export const All = () => (
-  <>
-    <Button appearance="primary">Primary</Button>
-    <Button appearance="secondary">Secondary</Button>
-    <Button appearance="tertiary">Tertiary</Button>
-    <Button appearance="outline">Outline</Button>
-    <Button appearance="primaryOutline">Outline primary</Button>
-    <Button appearance="secondaryOutline">Outline secondary</Button>
-    <div style={{ background: 'grey', display: 'inline-block' }}>
-      <Button appearance="inversePrimary">Primary inverse</Button>
-    </div>
-    <div style={{ background: 'grey', display: 'inline-block' }}>
-      <Button appearance="inverseSecondary">Secondary inverse</Button>
-    </div>
-    <div style={{ background: 'grey', display: 'inline-block' }}>
-      <Button appearance="inverseOutline">Outline inverse</Button>
-    </div>
-  </>
+  <div style={{ display: 'flex', width: '80%', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+    <Button type="primary">Primary</Button>
+    <Button type="secondary">Secondary</Button>
+    <Button type="success">Success</Button>
+    <Button type="danger">Danger</Button>
+    <Button type="warning">Warning</Button>
+    <Button type="info">Info</Button>
+    <Button type="light">Light</Button>
+    <Button type="dark">Dark</Button>
+    <Button type="link">Link</Button>
+  </div>
 );
 
 export const Sizes = () => (
-  <>
-    <Button appearance="primary">Default</Button>
-    <Button appearance="primary" size="small">
-      Small
+  <d>
+    <Button style={{ marginRight: 10 }}>Default</Button>
+    <Button style={{ marginRight: 10 }} size="large">
+      Large
     </Button>
-  </>
-);
-
-export const Loading = () => (
-  <>
-    <Button appearance="primary" isLoading>
-      Primary
-    </Button>
-    <Button appearance="secondary" isLoading>
-      Secondary
-    </Button>
-    <Button appearance="tertiary" isLoading>
-      Tertiary
-    </Button>
-    <Button appearance="outline" isLoading>
-      Outline
-    </Button>
-    <Button appearance="outline" isLoading loadingText="Custom...">
-      Outline
-    </Button>
-  </>
-);
-
-export const Disabled = () => (
-  <>
-    <Button appearance="primary" isDisabled>
-      Primary
-    </Button>
-    <Button appearance="secondary" isDisabled>
-      Secondary
-    </Button>
-    <Button appearance="tertiary" isDisabled>
-      Tertiary
-    </Button>
-    <Button appearance="outline" isDisabled>
-      Outline
-    </Button>
-  </>
+    <Button size="small">Small</Button>
+  </d>
 );
 
 export const ContainsIcon = () => (
   <>
-    <Button appearance="outline" containsIcon>
-      <Icon icon="link" aria-label="Link" />
+    <Button style={{ marginRight: 10 }}>
+      <FontAwesomeIcon icon={faCoffee} />
     </Button>
-    <Button appearance="outline" size="small" containsIcon>
-      <Icon icon="link" aria-label="Link" />
+    <Button style={{ marginRight: 10 }} icon={<FontAwesomeIcon icon={faCoffee} />}>
+      Label
+    </Button>
+    <Button icon={<FontAwesomeIcon icon={faCoffee} />} size="small">
+      Label
     </Button>
   </>
-);
-
-// eslint-disable-next-line react/button-has-type
-const ButtonWrapper = (props) => <button {...props} />;
-
-export const BasicWrapper = () => (
-  <Button
-    ButtonWrapper={ButtonWrapper}
-    appearance="primary"
-    onClick={action('button action click')}
-  >
-    Button that passes clicks through
-  </Button>
-);
-
-export const AnchorWrapper = () => (
-  <Button ButtonWrapper={StoryLinkWrapper} appearance="primary" href="http://storybook.js.org">
-    Button that passes href through
-  </Button>
 );
