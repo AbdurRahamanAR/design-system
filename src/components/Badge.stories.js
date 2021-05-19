@@ -11,17 +11,15 @@ export const Basic = (args) => <Badge {...args}>Badge</Badge>;
 
 export const All = () => (
   <div>
-    <Badge status="positive">Positive</Badge>
-    <Badge status="negative">Negative</Badge>
-    <Badge status="neutral">Neutral</Badge>
-    <Badge status="error">Error</Badge>
-    <Badge status="warning">Warning</Badge>
+    <Badge type="primary">Primary</Badge>
+    <Badge type="secondary">Secondary</Badge>
+    <Badge type="success">Success</Badge>
+    <Badge type="danger">Danger</Badge>
+    <Badge type="warning">Warning</Badge>
+    <Badge type="info">Info</Badge>
+    <Badge type="light">Light</Badge>
+    <Badge type="dark">Dark</Badge>
   </div>
 );
 
-export const WithIcon = () => (
-  <Badge status="warning">
-    <Icon icon="check" inline />
-    with icon
-  </Badge>
-);
+export const Rounded = () => <Badge rounded>Rounded</Badge>;

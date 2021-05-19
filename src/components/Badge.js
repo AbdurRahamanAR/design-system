@@ -1,70 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
-import { background, color, typography } from './shared/styles';
+import clsx from 'clsx';
 
-const BadgeWrapper = styled.div`
-  display: inline-block;
-  vertical-align: top;
-  font-size: 11px;
-  line-height: 12px;
-  padding: 4px 12px;
-  border-radius: 3em;
-  font-weight: ${typography.weight.bold};
+const badgeConstant = {
+  PRIMARY: 'primary',
+  SECONDARY: 'secondary',
+  SUCCESS: 'success',
+  DANGER: 'danger',
+  WARNING: 'warning',
+  INFO: 'info',
+  LIGHT: 'light',
+  DARK: 'dark',
+};
 
-  svg {
-    height: 12px;
-    width: 12px;
-    margin-right: 4px;
-    margin-top: -2px;
+const { PRIMARY, SECONDARY, SUCCESS, DANGER, WARNING, INFO, LIGHT, DARK } = badgeConstant;
+
+export function Badge({ type, rounded, ...props }) {
+  const classList = ['badge'];
+  if (type) {
+    classList.push(`bg-${type}`);
+    if (type === LIGHT) {
+      classList.push('text-dark');
+    }
   }
-
-  ${(props) =>
-    props.status === 'positive' &&
-    css`
-      color: ${color.positive};
-      background: ${background.positive};
-    `};
-
-  ${(props) =>
-    props.status === 'negative' &&
-    css`
-      color: ${color.negative};
-      background: ${background.negative};
-    `};
-
-  ${(props) =>
-    props.status === 'warning' &&
-    css`
-      color: ${color.warning};
-      background: ${background.warning};
-    `};
-
-  ${(props) =>
-    props.status === 'error' &&
-    css`
-      color: ${color.lightest};
-      background: ${color.negative};
-    `};
-
-  ${(props) =>
-    props.status === 'neutral' &&
-    css`
-      color: ${color.dark};
-      background: ${color.mediumlight};
-    `};
-`;
-
-/**
- * **Badges?!** We don't need no stinkin' badges!!
- */
-export function Badge({ ...props }) {
-  return <BadgeWrapper {...props} />;
+  if (rounded) {
+    classList.push('rounded-pill');
+  }
+  return <span className={clsx(classList)} {...props} />;
 }
+
 Badge.propTypes = {
-  status: PropTypes.oneOf(['positive', 'negative', 'neutral', 'error', 'warning']),
+  type: PropTypes.oneOf([PRIMARY, SECONDARY, SUCCESS, DANGER, WARNING, INFO, LIGHT, DARK]),
+  rounded: PropTypes.bool,
 };
 
 Badge.defaultProps = {
-  status: 'neutral',
+  type: PRIMARY,
+  rounded: false,
 };
