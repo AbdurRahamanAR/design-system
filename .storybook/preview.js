@@ -1,4 +1,5 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { loadFontsForStorybook } from '../src/utils/index';
 
 import { GlobalStyle } from '../src/components/shared/global';
