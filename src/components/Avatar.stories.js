@@ -1,4 +1,5 @@
 import React from 'react';
+import tomImage from '../images/tom.jpg';
 
 import { Avatar } from './Avatar';
 
@@ -15,11 +16,7 @@ const Base = ({ src, ...props }) => (
   <div>
     <Avatar isLoading {...props} />
     <Avatar username="Tom Coleman" {...props} />
-    <Avatar
-      username="Tom Coleman"
-      src={src || 'https://avatars2.githubusercontent.com/u/132554'}
-      {...props}
-    />
+    <Avatar username="Tom Coleman" src={src || tomImage} {...props} />
   </div>
 );
 
@@ -30,7 +27,3 @@ export const Medium = () => <Base />;
 export const Small = () => <Base size="small" />;
 
 export const Tiny = () => <Base size="tiny" />;
-
-export const Organization = () => (
-  <Base type="organization" username="Chromatic" src="/chromatic-logo-square.png" />
-);

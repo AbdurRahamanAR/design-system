@@ -16,6 +16,16 @@ export enum AvatarType {
   ORGANIZATION = 'organization',
 }
 
+const getNameShort = (name: string) => {
+  const nameShortList = name.split(' ');
+
+  if (nameShortList.length === 1) {
+    return name.slice(0, 2);
+  }
+
+  return `${nameShortList[0].slice(0, 1)}${nameShortList[nameShortList.length - 1][0]}`;
+};
+
 const Image = styled.div<Partial<Props>>`
   background: ${(props) => (!props.isLoading ? 'transparent' : color.light)};
   border-radius: ${(props) => (props.type === AvatarType.USER ? '50%' : '5px')};
@@ -134,7 +144,7 @@ export const Avatar: FunctionComponent<Props> = ({
     a11yProps['aria-label'] = username;
     avatarFigure = (
       <Initial size={size} aria-hidden="true">
-        {username.substring(0, 1)}
+        {getNameShort(username)}
       </Initial>
     );
   }
